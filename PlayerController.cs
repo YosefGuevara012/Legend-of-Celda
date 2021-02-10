@@ -8,10 +8,12 @@ public class PlayerController : MonoBehaviour
     public float speed = 5.0f;
     private const string AXIS_H = "Horizontal", AXIS_V = "Vertical";
 
+    private Animator _animator;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        _animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -33,5 +35,11 @@ public class PlayerController : MonoBehaviour
             this.transform.Translate(translation);
         }
 
+    }
+
+    private void LateUpdate()
+    {
+        _animator.SetFloat(AXIS_H, Input.GetAxisRaw(AXIS_H));
+        _animator.SetFloat(AXIS_V, Input.GetAxisRaw(AXIS_V));
     }
 }
